@@ -1,0 +1,264 @@
+<!-- Declaración del tipo de documento -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración del conjunto de caracteres -->
+    <meta charset="UTF-8">
+    <!-- Especificación de la compatibilidad con Internet Explorer -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Definición de la vista para dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Enlace al archivo CSS de Bootstrap desde un CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Título de la página -->
+    <title>Colegio</title>
+</head>
+<body>
+    
+    <!-- Barra de navegación utilizando el componente de Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <!-- Marca de la barra de navegación -->
+            <a class="navbar-brand" href="#">Inicio</a>
+            <!-- Botón para alternar la visibilidad de los enlaces de navegación en pantallas pequeñas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Contenedor de enlaces de navegación -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <!-- Enlace de navegación: Inicio -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.js">Nosotros</a>
+                    </li>
+                    <!-- Enlace de navegación: Clientes -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="clientes.html">Clientes</a>
+                    </li>
+                    <!-- Enlace de navegación: Productos -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html">Ubicacion</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Contenedor principal utilizando el sistema de grillas de Bootstrap -->
+    <div class="container mt-4">
+        <!-- Título principal de la página -->
+        <h1 class="mb-4">Alumnos</h1>
+        <!-- Botón para abrir un modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+            Agregar nuevo alumno
+        </button>
+        
+        <!-- Definición del modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-static"> <!-- Agrega la clase modal-static aquí -->
+                <!-- Contenido del modal -->
+                <div class="modal-content">
+                    <!-- Encabezado del modal -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Formulario</h5>
+                    </div>
+                    <!-- Cuerpo del modal -->
+                    <div class="modal-body">
+
+                
+       
+        <!-- Definición del formulario con la acción y el método -->
+<form action="/crud_c" method="post">
+
+    <!-- Campo para ingresar el ID del estudiante -->
+    <div class="mb-3">
+        <input type="text" class="form-control" id="txt_id_estudiante" name="txt_id_estudiante" placeholder="Id">
+    </div>
+
+    <!-- Campo para ingresar el carnet del estudiante -->
+    <div class="mb-3">
+        <input type="text" class="form-control" id="txt_carne" name="txt_carne" placeholder="Carnet">
+        <span id="error_txt_carne" style="color: red;"></span> <!-- Mensaje de error para el carnet -->
+    </div>
+
+    <!-- Campo para ingresar los nombres del estudiante -->
+    <div class="mb-3">
+        <input type="text" class="form-control" id="txt_nombres" name="txt_nombres" placeholder="Nombres">
+    </div>
+
+    <!-- Campo para ingresar los apellidos del estudiante -->
+    <div class="mb-3">
+        <input type="text" class="form-control" id="txt_apellidos" name="txt_apellidos" placeholder="Apellidos">
+    </div>
+
+    <!-- Campo para ingresar la dirección del estudiante -->
+    <div class="mb-3">
+        <input type="text" class="form-control" id="txt_direccion" name="txt_direccion" placeholder="Dirección">
+    </div>
+
+    <!-- Campo para ingresar el teléfono del estudiante -->
+    <div class="mb-3">
+        <input type="text" class="form-control" id="txt_telefono" name="txt_telefono" placeholder="Teléfono">
+    </div>
+
+    <!-- Campo para ingresar el correo electrónico del estudiante -->
+    <div class="mb-3">
+        <input type="text" class="form-control" id="txt_correo_electronico" name="txt_correo_electronico" placeholder="Correo Electrónico">
+    </div>
+
+    <!-- Selección del tipo de sangre del estudiante -->
+    <div class="mb-3">
+        <label for="sel_id_tipo_sangre">Tipo de Sangre</label>
+        <select class="form-control" id="sel_id_tipo_sangre" name="sel_id_tipo_sangre">
+            <option value="">Seleccione un tipo de sangre</option> <!-- Opción predeterminada -->
+            <!-- Generación de opciones de tipo de sangre -->
+            <% tiposSangre.forEach((tipoSangre) => { %>
+                <option value="<%= tipoSangre.id_tipo_sangre %>"><%= tipoSangre.sangre %></option>
+            <% }) %>
+        </select>
+    </div>
+
+    <!-- Campo oculto para el ID del tipo de sangre seleccionado -->
+    <div class="mb-3" style="display: none;">
+        <input type="text" class="form-control" id="txt_id_tipo_sangre" name="txt_id_tipo_sangre" placeholder="tipo de sangre">
+    </div>
+    <div class="mb-3">
+    <input type="date" id="txt_fn" name="txt_fn" placeholder="yyyy-MM-dd">
+</div>
+
+
+    <!-- Botón para crear un registro -->
+    <button type="submit" class="btn btn-primary" name="btn_crear" value="crear">Crear</button>
+
+    <!-- Botón para actualizar un registro -->
+    <button type="submit" class="btn btn-success" name="btn_actualizar" value="actualizar">Actualizar</button>
+
+    <!-- Botón para borrar un registro -->
+    <button type="submit" class="btn btn-danger" name="btn_borrar" value="borrar">Borrar</button>
+
+</form>
+
+            </div>
+           
+            </div>
+            </div>
+            </div>
+
+
+
+
+
+      <!-- Tabla con clases de Bootstrap y espacio superior -->
+<table class="table mt-4">
+    <thead>
+        <!-- Fila de encabezados de la tabla -->
+        <tr>
+            <!-- Columnas de encabezado -->
+            <th>id_estudiante</th>
+            <th>carnet</th>
+            <th>nombres</th>
+            <th>apellidos</th>
+            <th>direccion</th>
+            <th>telefono</th>
+            <th>correo</th>
+            <th>sangre</th>
+            <th>nacimiento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Iterar a través de los resultados y mostrar cada cliente en una fila -->
+        <!-- Aquí se utiliza una sintaxis similar a las etiquetas de apertura y cierre de código del lenguaje de programación -->
+        <% resultado.forEach((cliente) => { %>
+            <!-- Fila de datos del cliente -->
+            <tr>
+                <!-- Celda con clase para abrir el modal al hacer clic -->
+                <td class="celda-abrir-modal" data-bs-toggle="modal" data-bs-target="#myModal"><%= cliente.id_estudiante %></td>
+                <!-- Celdas de datos del cliente -->
+                <td><%= cliente.carne %></td>
+                <td><%= cliente.nombres %></td>
+                <td><%= cliente.apellidos %></td>
+                <td><%= cliente.direccion %></td>
+                <td><%= cliente.telefono %></td>
+                <td><%= cliente.correo_electronico%></td>
+                <td><%= cliente.sangre%></td>
+                <td><%= cliente.fecha_nacimiento %></td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+    </div>
+    
+   <!-- Agregar enlaces a los scripts de Bootstrap JS si es necesario -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Código JavaScript para la validación del campo "Carnet"
+    const inputCarne = document.getElementById('txt_carne'); // Obtiene el elemento de entrada del carné
+    const errorCarne = document.getElementById('error_txt_carne'); // Obtiene el elemento de error del carné
+
+    document.querySelector('form').addEventListener('submit', function (event) {
+        const formatoValido = /^E\d{3}$/.test(inputCarne.value); // Comprueba el formato del carné
+
+        if (!formatoValido) {
+            errorCarne.textContent = 'El formato no es válido. Debe ser E001 - E999'; // Muestra un mensaje de error
+            event.preventDefault(); // Evita que el formulario se envíe
+        } else {
+            errorCarne.textContent = ''; // Limpia el mensaje de error
+        }
+    });
+
+    // Código JavaScript para mostrar cuadro de texto de confirmación al hacer clic en los botones
+    const form = document.querySelector('form'); // Obtiene el formulario
+  
+    const btnDelete = form.querySelector('[name="btn_borrar"]'); // Obtiene el botón "Borrar"
+
+
+    btnDelete.addEventListener('click', function(event) {
+        if (!confirm('¿Estás seguro que deseas borrar este registro?')) {
+            event.preventDefault();
+        }
+    });
+
+    // Código JavaScript para llenar el formulario al hacer clic en una fila de la tabla
+    const tabla = document.querySelector('table'); // Obtiene la tabla
+    const inputs = document.querySelectorAll('input[type="text"]'); // Obtiene todos los campos de texto
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const celdasAbrirModal = document.querySelectorAll('.celda-abrir-modal'); // Obtiene celdas con clase específica
+
+        celdasAbrirModal.forEach((celda) => {
+            celda.addEventListener('click', function() {
+                const modal = new bootstrap.Modal(document.getElementById('myModal')); // Crea un modal de Bootstrap
+                modal.show(); // Muestra el modal
+
+                const fila = celda.closest('tr'); // Encuentra la fila correspondiente
+                const celdas = fila.querySelectorAll('td'); // Obtiene todas las celdas de la fila
+
+                const inputs = document.querySelectorAll('input[type="text"]');
+                inputs.forEach((input, index) => {
+                    input.value = celdas[index].textContent.trim(); // Rellena los campos con los valores de las celdas
+                });
+
+                // Aquí también puedes copiar el valor del campo de select, si es necesario
+            });
+        });
+    });
+
+    const selectElement = document.getElementById('sel_id_tipo_sangre'); // Obtiene el elemento de selección
+    const inputElement = document.getElementById('txt_id_tipo_sangre'); // Obtiene el campo de texto
+
+    selectElement.addEventListener('change', function () {
+        inputElement.value = selectElement.value; // Asigna el valor seleccionado al campo de texto
+    });
+</script>
+
+
+
+
+</body>
+</html>
